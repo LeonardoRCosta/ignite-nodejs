@@ -8,8 +8,6 @@
 
 - Não deve ser possível cadastrar um carro com uma placa já cadastrada
 
-- Não deve ser possível alterar a placa de um carro
-
 - Quando cadastrado, por padrão, o carro deve estar disponível
 
 - O usuário responsável pelo cadastro deve ser um usuário administrador
