@@ -1,4 +1,5 @@
 import { InMemoryRentalsRepository } from '@modules/rentals/repositories/in-memory/InMemoryRentalsRepository';
+import { DayjsDateProvider } from '@shared/container/providers/dateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 import dayjs from 'dayjs';
 import { CreateRentalUseCase } from './CreateRentalUseCase';
@@ -8,10 +9,15 @@ describe('Create Rental', () => {
 
   let createRentalUseCase: CreateRentalUseCase;
   let inMemoryRentalsRepository: InMemoryRentalsRepository;
+  let dayjsDateProvider: DayjsDateProvider;
 
   beforeEach(() => {
     inMemoryRentalsRepository = new InMemoryRentalsRepository();
-    createRentalUseCase = new CreateRentalUseCase(inMemoryRentalsRepository);
+    dayjsDateProvider = new DayjsDateProvider();
+    createRentalUseCase = new CreateRentalUseCase(
+      inMemoryRentalsRepository,
+      dayjsDateProvider
+    );
   });
 
   it('should be able to create a rental', async () => {
