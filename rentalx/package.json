@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "test": "jest --verbose",
+    "test": "NODE_ENV=test jest --runInBand",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.9",
+    "supertest": "^6.3.3",
     "bcrypt": "^5.1.0",
     "csv-parse": "^5.3.3",
     "dayjs": "^1.11.7",
@@ -42,7 +43,6 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^29.3.1",
-    "supertest": "^6.3.3",
     "ts-jest": "^29.0.3",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.1",
