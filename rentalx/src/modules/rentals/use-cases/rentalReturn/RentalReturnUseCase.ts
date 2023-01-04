@@ -1,4 +1,4 @@
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
@@ -11,6 +11,7 @@ interface IRequest {
   user_id: string;
 }
 
+@injectable()
 class RentalReturnUseCase {
   constructor(
     @inject('RentalsRepository')
