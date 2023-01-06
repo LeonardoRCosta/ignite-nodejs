@@ -48,12 +48,11 @@ describe('Create car specifcation', () => {
     const car_id = '1234';
     const specifications_ids = ['54321'];
 
-    expect(
-      async () =>
-        await createCarSpecificationUseCase.execute({
-          car_id,
-          specifications_ids,
-        })
-    ).rejects.toBeInstanceOf(AppError);
+    await expect(
+      createCarSpecificationUseCase.execute({
+        car_id,
+        specifications_ids,
+      })
+    ).rejects.toEqual(new AppError('Car not found', 404));
   });
 });
