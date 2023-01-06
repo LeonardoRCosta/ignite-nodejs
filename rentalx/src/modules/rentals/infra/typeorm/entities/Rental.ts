@@ -1,8 +1,11 @@
+import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { randomUUID } from 'node:crypto';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -11,6 +14,10 @@ import {
 class Rental {
   @PrimaryColumn()
   id: string;
+
+  @ManyToOne(() => Car)
+  @JoinColumn({ name: 'car_id' })
+  car: Car;
 
   @Column()
   car_id: string;
