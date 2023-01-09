@@ -1,10 +1,10 @@
+import { hash } from 'bcrypt';
+import { randomUUID } from 'node:crypto';
 import request from 'supertest';
 import { Connection } from 'typeorm';
-import { randomUUID } from 'node:crypto';
-import { hash } from 'bcrypt';
 
-import createConnection from '@shared/infra/typeorm';
 import { app } from '@shared/infra/http/app';
+import createConnection from '@shared/infra/typeorm';
 
 describe('Create Category Controller', () => {
   let connection: Connection;
@@ -32,12 +32,12 @@ describe('Create Category Controller', () => {
       .post('/sessions')
       .send({ email: 'admin@rentalx.com.br', password: 'admin' });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const response = await request(app)
       .post('/categories')
       .send({ name: 'Category Supertest', description: 'Category Supertest' })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     expect(response.status).toBe(201);
   });
@@ -47,12 +47,12 @@ describe('Create Category Controller', () => {
       .post('/sessions')
       .send({ email: 'admin@rentalx.com.br', password: 'admin' });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const response = await request(app)
       .post('/categories')
       .send({ name: 'Category Supertest', description: 'Category Supertest' })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     expect(response.status).toBe(400);
   });
