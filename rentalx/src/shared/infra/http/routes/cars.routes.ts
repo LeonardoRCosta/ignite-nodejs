@@ -3,11 +3,11 @@ import multer from 'multer';
 
 import uploadConfig from '@config/upload';
 import { CreateCarController } from '@modules/cars/use-cases/createCar/CreateCarController';
+import { CreateCarSpecificationController } from '@modules/cars/use-cases/createCarSpecification/CreateCarSpecificationController';
+import { ListAvailableCarsController } from '@modules/cars/use-cases/listAvailableCars/ListAvailableCarsController';
+import { UploadCarImagesController } from '@modules/cars/use-cases/uploadCarImages/UploadCarImagesController';
 import { ensureAdmin } from '../middlewares/ensureAdmin';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
-import { ListAvailableCarsController } from '@modules/cars/use-cases/listAvailableCars/ListAvailableCarsController';
-import { CreateCarSpecificationController } from '@modules/cars/use-cases/createCarSpecification/CreateCarSpecificationController';
-import { UploadCarImagesController } from '@modules/cars/use-cases/uploadCarImages/UploadCarImagesController';
 
 const carsRoutes = Router();
 
@@ -16,7 +16,7 @@ const listAvailableCarsController = new ListAvailableCarsController();
 const createCarSpecificationController = new CreateCarSpecificationController();
 const uploadCarImagesController = new UploadCarImagesController();
 
-const upload = multer(uploadConfig.upload('./tmp/cars'));
+const upload = multer(uploadConfig);
 
 carsRoutes.post(
   '/',
